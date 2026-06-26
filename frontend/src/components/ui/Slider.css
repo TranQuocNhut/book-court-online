@@ -1,0 +1,127 @@
+.ui-slider-container {
+    position: relative;
+    width: 100%;
+}
+
+.ui-slider-track {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 4px;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    align-items: stretch;
+    /* Enable momentum scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Improve touch scrolling performance */
+    overscroll-behavior-x: contain;
+}
+
+.ui-slider-track.ui-slider-loop {
+    /* Optimize for infinite loop */
+    will-change: scroll-position;
+}
+
+.ui-slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+.ui-slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #374151;
+    transition: all 0.2s;
+}
+
+.ui-slider-btn:hover {
+    background: #f9fafb;
+    color: #111827;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.ui-slider-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.ui-slider-btn-left {
+    left: -20px;
+}
+
+.ui-slider-btn-right {
+    right: -20px;
+}
+
+/* Mobile optimizations */
+.ui-slider-mobile {
+    /* Enable scroll snapping on mobile for better UX */
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 16px;
+    /* Smooth momentum scrolling */
+    -webkit-overflow-scrolling: touch;
+    /* Prevent scroll chaining */
+    overscroll-behavior-x: contain;
+}
+
+.ui-slider-mobile > div {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.ui-slider-container-mobile {
+    padding: 0 16px;
+}
+
+@media (max-width: 768px) {
+    .ui-slider-container {
+        padding: 0 16px;
+    }
+
+    .ui-slider-track {
+        padding: 4px 0;
+        /* Optimize for touch scrolling */
+        scroll-snap-type: x mandatory;
+        scroll-padding: 0 16px;
+    }
+
+    .ui-slider-track > div {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+
+    .ui-slider-btn {
+        display: none; /* Hide buttons on mobile, use swipe instead */
+    }
+
+    /* Show buttons only on hover for tablets */
+    @media (hover: hover) and (pointer: fine) {
+        .ui-slider-btn {
+            display: flex;
+            width: 32px;
+            height: 32px;
+        }
+
+        .ui-slider-btn-left {
+            left: -10px;
+        }
+
+        .ui-slider-btn-right {
+            right: -10px;
+        }
+    }
+}
